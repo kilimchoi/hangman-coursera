@@ -1,0 +1,26 @@
+.hangman
+  .hangman__canvas
+    .gallows
+      .gallows__part.gallows__part--1
+      .gallows__part.gallows__part--2
+      .gallows__part.gallows__part--3
+      .gallows__part.gallows__part--4
+      .gallows__part.gallows__part--5
+    .man
+      i.man__head
+      i.man__body
+      i.man__leg.man__leg--left
+      i.man__leg.man__leg--right
+      i.man__arm.man__arm--right
+      i.man__arm.man__arm--left
+
+  .hangman__letters
+    h3
+      - ("A".."Z").each do |char|
+        => link_to char, game_path, remote: true, method: :patch, class: "guess", data: { params: { game: { guess: char } } }
+
+  .hangman__phrase
+    h3#phrase= @game["phrase"]
+
+  .hangman__new-game
+    = link_to 'Start new game', 'javascript:location.reload();'

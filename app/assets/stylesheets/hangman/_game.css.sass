@@ -1,0 +1,208 @@
+@keyframes background-part
+  0%
+    background: #C00000
+
+  70%
+    background: #C00000
+
+  100%
+    background: #000
+
+@keyframes border-color-head
+  0%
+    border-color: #C00000
+
+  70%
+    border-color: #C00000
+
+  100%
+    border-color: #000
+
+.hangman
+  padding: 50px
+
+  &__canvas
+    height: 100px
+    margin: 0 auto
+    position: relative
+    width: 100px
+
+  &__letters
+    text-align: center
+    margin: 30px auto 20px
+    width: 480px
+
+    h3
+      font-family: 'Fontdiner Swanky', cursive
+      font-size: 24px
+      margin: 0
+
+    a
+      color: #000
+      margin: 0 5px
+      text-decoration: none
+      transition: opacity .15s linear
+
+      .game-over &
+        pointer-events: none
+        cursor: default
+
+      &.highlighted
+        color: #C00000
+        pointer-events: none
+        cursor: default
+
+        &:hover
+          opacity: 1
+
+      &:hover
+        opacity: .3
+
+  &__phrase
+    margin: 30px 0 0
+    text-align: center
+
+    h3
+      margin: 0
+      font-size: 18px
+
+  &__new-game
+    display: none
+    padding-top: 50px
+    text-align: center
+
+    a
+      display: inline-block
+      font-family: 'Fontdiner Swanky', cursive
+      background: #000
+      color: #fff
+      font-size: 16px
+      letter-spacing: 2px
+      text-decoration: none
+      padding: 10px 25px
+
+      &:hover
+        background: #C00000
+
+.gallows
+  $base-size: 8px
+
+  position: relative
+  height: 100%
+  width: 100%
+
+  &__part
+    background: #000
+    border-radius: 4px
+    position: absolute
+
+    &--1
+      height: $base-size
+      width: 40px
+      bottom: 0
+      left: 0
+
+    &--2
+      height: 100%
+      width: $base-size - 1
+      bottom: 0
+      left: 16px
+
+    &--3
+      height: $base-size - 1
+      width: 55px
+      left: 16px
+      top: 0
+
+    &--4
+      width: $base-size - 1
+      height: 20px
+      left: 64px
+      top: 0
+
+    &--5
+      width: 40px
+      height: $base-size - 1
+      left: 12px
+      top: 12px
+      transform: rotate(-45deg)
+
+.man
+  $base-size: 5px
+
+  position: absolute
+  top: 0
+  height: 100%
+  width: 100%
+  left: 0
+
+  > *
+    display: none
+    position: absolute
+    background: #C00000
+    border-radius: 3px
+
+    .game-over &
+      border-color: #000 !important
+
+    &.visible
+      display: block
+      -webkit-animation-name: background-part
+      animation-name: background-part
+      -webkit-animation-duration: 5s
+      animation-duration: 5s
+      -webkit-animation-fill-mode: forwards
+      animation-fill-mode: forwards
+
+  &__head
+    background: transparent
+    border: $base-size solid #C00000
+    border-radius: 50%
+    height: 17px
+    width: 17px
+    top: 19px
+    left: 54px
+
+    .game-over &
+      background: #C00000 !important
+
+    &.visible
+      display: block
+      -webkit-animation-name: border-color-head
+      animation-name: border-color-head
+      -webkit-animation-duration: 1s
+      animation-duration: 1s
+      -webkit-animation-fill-mode: forwards
+      animation-fill-mode: forwards
+
+  &__body
+    width: $base-size
+    height: 30px
+    left: 65px
+    top: 41px
+
+  &__leg
+    width: $base-size
+    height: 25px
+    top: 68px
+
+    &--left
+      left: 71px
+      transform: rotate(-35deg)
+
+    &--right
+      left: 59px
+      transform: rotate(35deg)
+
+  &__arm
+    height: $base-size
+    width: 17px
+    top: 53px
+
+    &--left
+      left: 67px
+      transform: rotate(15deg)
+
+    &--right
+      left: 51px
+      transform: rotate(-15deg)
