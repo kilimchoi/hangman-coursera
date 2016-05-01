@@ -10,7 +10,7 @@ class GamesController < ApplicationController
   def update
     tries_left = session[:game]["tries_left"].to_i
     guess = HangmanGame.new.guess(session[:game]["key"], game_params[:guess])
-
+    puts "json is ", guess.except("game_key").merge(wrong: tries_left > guess["num_tries_left"].to_i)
     render json: guess.except("game_key").merge(wrong: tries_left > guess["num_tries_left"].to_i)
   end
 
